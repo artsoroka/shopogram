@@ -1,0 +1,34 @@
+{
+  "name": "shopogram",
+  "version": "0.0.1",
+  "description": "Find trendy offers on Instagram",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "color-thief": "^2.2.1",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.4.1",
+    "elasticsearch": "^10.1.3",
+    "express": "^4.13.4",
+    "node-schedule": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "./bin/www", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artsoroka/shopogram.git"
+  },
+  "keywords": [
+    "shop",
+    "instagram"
+  ],
+  "author": "Artem Soroka <art.soroka@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artsoroka/shopogram/issues"
+  },
+  "homepage": "https://github.com/artsoroka/shopogram#readme"
+}
