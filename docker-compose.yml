@@ -1,0 +1,11 @@
+node: 
+  build: src/nodejs 
+  ports:
+    - "8080:8080"
+  links: 
+    - elasticsearch 
+
+elasticsearch: 
+  image: elasticsearch:2.3.0
+  ports: 
+    - "9200:9200"
