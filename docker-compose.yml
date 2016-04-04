@@ -7,5 +7,6 @@ node:
 
 elasticsearch: 
   image: elasticsearch:2.3.0
+  container_name: elasticsearch
   ports: 
     - "9200:9200"
