@@ -2,8 +2,13 @@
 
 # If using Docker or docker-compose 
 # these commands are used to get Elasticsearch container IP address
-CONTAINER_NAME=elasticsearch
-ES_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' $CONTAINER_NAME)
+if [ -z "$ES_IP" ]
+then 
+    CONTAINER_NAME=elasticsearch
+    ES_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' $CONTAINER_NAME)
+else 
+    echo "ES_IP is set to" $ES_IP
+fi
 
 # If index is already defined, it should be deleted first 
 #   curl -XDELETE $ES_IP:9200/shopogram
