@@ -2,23 +2,31 @@ var HASHTAG = /^#(\w|\W)+/;
 var MENTION = /^@(\w|\W)+/; 
 
 module.exports = function(str){
-    var text = str || '';
+    var text  = str || '';
     var words = text.split(' ').filter(function(word){ 
         return word.length; 
     }); 
     
-    var tags = words.filter(function(word){ 
-        return HASHTAG.test(word); 
+    var post = words.reduce(function(acc, word){
+        var wordWithoutSymbol = word.slice(1, word.length); 
+        
+        if( HASHTAG.test(word) ){
+            acc.tags.push(wordWithoutSymbol); 
+        }
+        
+        if( MENTION.test(word) ){
+            acc.mentions.push(wordWithoutSymbol); 
+        }
+        
+        return acc; 
+        
+    }, {
+        tags: [], 
+        mentions: []
     }); 
     
-    var mentions = words.filter(function(word){
-        return MENTION.test(word); 
-    }); 
+    post.text = text; 
     
-    return {
-        text    : text, 
-        tags    : tags, 
-        mentions: mentions 
-    }; 
+    return post; 
     
 }; 
