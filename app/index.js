@@ -2,6 +2,7 @@ var express    = require('express');
 var bodyParser = require('body-parser'); 
 var app        = express(); 
 var client     = require('./lib/elasticsearch'); 
+var buildQuery = require('./lib/buildQuery'); 
 
 app.use(express.static(__dirname + '/public')); 
 app.use(bodyParser.json()); 
@@ -14,20 +15,18 @@ app.get('/', function(req, res){
 }); 
 
 app.post('/search', function(req,res){
-    var body  = req.body   || {}; 
-    var query = body.query || null; 
-
+    var body   = req.body    || {}; 
+    var query  = body.query  || null; 
+    var colors = body.colors || null; 
+    
     client
         .search({
-            index: 'shopogram', 
+            index: 'test', 
             type : 'posts', 
-            body : {
-                query: {
-                    match: {
-                        body: query
-                    }
-                }
-            }
+            body : buildQuery({
+            text  : query,
+                colors: colors
+            }) 
         })
         .then(function(response){
             if( ! response.hits.total ){
